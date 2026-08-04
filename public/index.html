@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>지유명차 잠실점</title>
+  <link rel="stylesheet" href="/styles.css" />
+</head>
+<body>
+  <header class="site-header">
+    <!-- 상단 유틸 바 (네이버 예약만) -->
+    <div class="topbar">
+      <ul class="topbar-menu">
+        <li class="topbar-reserve"><a id="reserve-top" href="#" target="_blank" rel="noopener">네이버 예약</a></li>
+      </ul>
+    </div>
+
+    <!-- 로고 -->
+    <div class="header-main">
+      <span class="header-spacer"></span>
+      <a href="/" class="logo">지유명차<small>잠실점</small></a>
+      <span class="header-spacer"></span>
+    </div>
+
+    <!-- 메인 메뉴 (가운데) -->
+    <nav class="main-nav">
+      <ul id="nav-menu"><!-- JS로 채움 --></ul>
+    </nav>
+    <div class="header-border"></div>
+  </header>
+
+  <main class="container">
+    <p class="breadcrumb">홈 <span>/</span> <em id="crumb-current">전체상품</em></p>
+
+    <h1 class="page-title" id="page-title">전체상품</h1>
+
+    <!-- 상품 목록 -->
+    <section class="listing" id="listing-view">
+      <div class="listing-head">
+        <span id="list-count">전체 0개</span>
+      </div>
+      <div class="product-grid" id="product-grid"><!-- JS로 채움 --></div>
+    </section>
+
+    <!-- 커뮤니티/정보 페이지 (메뉴마다 각각 렌더) -->
+    <section class="page-view" id="page-view" hidden><!-- JS로 채움 --></section>
+  </main>
+
+  <footer class="site-footer">
+    <div class="footer-inner">
+      <div class="footer-col">
+        <strong>지유명차 잠실점</strong>
+        <p>보이차 · 우롱차 · 차호 · 도자기 · 차도구 · 차용품</p>
+        <p>네이버 예약제로 운영합니다.</p>
+      </div>
+      <div class="footer-col">
+        <strong>운영시간</strong>
+        <p>평일 12:00 ~ 18:00</p>
+        <p>토·일요일, 공휴일 : 예약제 운영</p>
+      </div>
+    </div>
+    <p class="footer-bottom"><a href="/admin.html">관리자 페이지</a></p>
+  </footer>
+
+  <script src="/app.js"></script>
+</body>
+</html>

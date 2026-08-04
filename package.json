@@ -1,0 +1,17 @@
+{
+  "name": "cha-shop",
+  "version": "0.1.0",
+  "description": "차예마을 스타일 차 판매 사이트",
+  "type": "module",
+  "scripts": {
+    "start": "node server.js",
+    "dev": "node --watch server.js"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "dependencies": {
+    "express": "^4.19.2",
+    "multer": "^1.4.5-lts.1"
+  }
+}
