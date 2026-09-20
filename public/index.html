@@ -4,6 +4,18 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>지유명차 잠실점</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <meta name="description" content="지유명차 잠실점 — 보이차·우롱차·차호·도자기·차도구·차용품 전문, 차회 운영. 건강과 행복의 평생 동반자, 네이버 예약제 운영." />
+  <!-- 카톡·SNS 링크 미리보기 -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="지유명차 잠실점" />
+  <meta property="og:description" content="보이차 · 우롱차 · 차호 · 도자기 · 차도구 · 차용품 전문 · 차회 — 건강과 행복의 평생 동반자" />
+  <meta property="og:image" content="https://jiyou-eb262.web.app/og-image.png" />
+  <meta property="og:url" content="https://jiyou-eb262.web.app" />
+  <meta name="twitter:card" content="summary_large_image" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Gothic+A1:wght@700;800;900&family=Nanum+Myeongjo:wght@400;700;800&family=Noto+Sans+KR:wght@400;500;700&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="/styles.css" />
 </head>
 <body>
@@ -11,7 +23,7 @@
     <!-- 상단 유틸 바 (네이버 예약만) -->
     <div class="topbar">
       <ul class="topbar-menu">
-        <li class="topbar-reserve"><a id="reserve-top" href="#" target="_blank" rel="noopener">네이버 예약</a></li>
+        <li class="topbar-reserve"><a id="reserve-top" href="#" target="_blank" rel="noopener"><svg class="naver-n" viewBox="0 0 28 28" aria-hidden="true"><rect x="4.5" y="5" width="5" height="18"/><rect x="18.5" y="5" width="5" height="18"/><polygon points="4.5,5 9.5,5 23.5,23 18.5,23"/></svg>네이버 예약</a></li>
       </ul>
     </div>
 
@@ -28,6 +40,25 @@
     </nav>
     <div class="header-border"></div>
   </header>
+
+  <!-- 히어로 배너 (전체상품 화면에서만) -->
+  <section class="hero" id="hero">
+    <div class="hero-inner">
+      <div class="hero-text">
+        <p class="hero-label">— 지유명차 잠실점 —</p>
+        <h1 class="hero-title">보이차 즐기기,<br />건강한 생활</h1>
+        <p class="hero-sub">보이차 · 우롱차 · 차호 · 도자기 · 차도구 · 차용품 전문 · 차회<br />건강과 행복의 평생 동반자 _ 지유명차 잠실점</p>
+        <div class="hero-cta">
+          <a class="btn-reserve" id="hero-reserve" href="#" target="_blank" rel="noopener"><svg class="naver-n" viewBox="0 0 28 28" aria-hidden="true"><rect x="4.5" y="5" width="5" height="18"/><rect x="18.5" y="5" width="5" height="18"/><polygon points="4.5,5 9.5,5 23.5,23 18.5,23"/></svg>네이버 예약하기</a>
+          <button class="btn-map" id="hero-location">오시는 길</button>
+        </div>
+        <p class="hero-inquiry">보이차 관련 문의사항은 <a href="tel:050713370451">0507-1337-0451</a>로 문의 바랍니다.</p>
+      </div>
+      <div class="hero-art">
+        <img src="/hero-tea.jpg" alt="지유명차 잠실점에서 우린 보이차 한 잔" width="900" height="900" />
+      </div>
+    </div>
+  </section>
 
   <main class="container">
     <p class="breadcrumb">홈 <span>/</span> <em id="crumb-current">전체상품</em></p>
@@ -48,20 +79,44 @@
 
   <footer class="site-footer">
     <div class="footer-inner">
-      <div class="footer-col">
-        <strong>지유명차 잠실점</strong>
-        <p>보이차 · 우롱차 · 차호 · 도자기 · 차도구 · 차용품</p>
-        <p>네이버 예약제로 운영합니다.</p>
+      <div class="footer-brand">
+        <div class="footer-logo">지유명차 <span>잠실점</span></div>
+        <p>보이차 · 우롱차 · 차호 · 도자기 · 차도구 · 차용품 전문 · 차회 등</p>
+        <p class="footer-tag">건강과 행복의 평생 동반자</p>
+        <a class="btn-reserve footer-reserve" id="footer-reserve" href="#" target="_blank" rel="noopener"><svg class="naver-n" viewBox="0 0 28 28" aria-hidden="true"><rect x="4.5" y="5" width="5" height="18"/><rect x="18.5" y="5" width="5" height="18"/><polygon points="4.5,5 9.5,5 23.5,23 18.5,23"/></svg>네이버 예약하기</a>
+        <p class="footer-inquiry">보이차 관련 문의사항은 <a href="tel:050713370451">0507-1337-0451</a>로 문의 바랍니다.</p>
       </div>
+
+      <nav class="footer-col" id="footer-links">
+        <h4>바로가기</h4>
+        <ul>
+          <li data-nav="전체상품">전체상품</li>
+          <li data-nav="숙차_보이차">숙차_보이차</li>
+          <li data-nav="생차_보이차">생차_보이차</li>
+          <li data-sub="지유명차 잠실점 소개">지점 소개</li>
+          <li data-sub="보이차 바로알기">보이차 바로알기</li>
+          <li data-sub="오시는길">오시는 길</li>
+        </ul>
+      </nav>
+
       <div class="footer-col">
-        <strong>운영시간</strong>
-        <p>평일 12:00 ~ 18:00</p>
-        <p>토·일요일, 공휴일 : 예약제 운영</p>
+        <h4>이용 안내</h4>
+        <ul>
+          <li>운영시간 : 평일 12:00 ~ 18:00</li>
+          <li>토·일·공휴일 : 예약제 운영</li>
+          <li>전화 : 0507-1337-0451</li>
+          <li>주소 : 서울 송파구 가락로18길 7, 1층 3호</li>
+          <li>사업자등록번호 : 887-40-01396</li>
+        </ul>
       </div>
     </div>
-    <p class="footer-bottom"><a href="/admin.html">관리자 페이지</a></p>
+
+    <div class="footer-bottom">
+      <p>지유명차 잠실점 · 사업자등록번호 887-40-01396 · 서울 송파구 가락로18길 7, 1층 3호 · 0507-1337-0451</p>
+      <p>© 2026 지유명차 잠실점. All rights reserved.</p>
+    </div>
   </footer>
 
-  <script src="/app.js"></script>
+  <script type="module" src="/app.js"></script>
 </body>
 </html>

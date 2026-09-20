@@ -3,7 +3,8 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>관리자 — 상품 관리 · 차예마을</title>
+  <title>관리자 — 지유명차 잠실점</title>
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
   <link rel="stylesheet" href="/styles.css" />
   <style>
     .admin { max-width: 1100px; margin: 0 auto; padding: 24px; }
@@ -36,6 +37,8 @@
     .del-btn { background: none; border: 1px solid var(--line); border-radius: 5px; color: var(--wine); padding: 5px 10px; cursor: pointer; }
     .del-btn:hover { background: var(--wine); color: #fff; border-color: var(--wine); }
     .pill { background: #f4f4f4; border-radius: 4px; padding: 2px 8px; font-size: 12px; }
+    .pill-warn { background: #fdeceb; color: #c0392b; font-weight: 700; }
+    .pill-note { display: inline-block; margin-left: 6px; font-size: 11px; color: #999; }
     .edit-btn { background: none; border: 1px solid var(--line); border-radius: 5px; color: #555; padding: 5px 10px; cursor: pointer; margin-right: 6px; }
     .edit-btn:hover { border-color: var(--ink); color: var(--ink); }
 
@@ -61,15 +64,27 @@
     .modal-actions button { flex: 1; padding: 11px; border-radius: 6px; font-size: 15px; font-weight: 700; cursor: pointer; }
     .btn-save { background: var(--wine); color: #fff; border: none; }
     .btn-cancel { background: #fff; color: #555; border: 1px solid var(--line); }
+    .tabs { display: flex; gap: 8px; margin-bottom: 22px; border-bottom: 1px solid var(--line); }
+    .tab-btn {
+      padding: 10px 20px; border: none; background: none; cursor: pointer;
+      font-size: 15px; font-weight: 700; color: #999; border-bottom: 2px solid transparent;
+    }
+    .tab-btn.active { color: var(--wine); border-bottom-color: var(--wine); }
+    .notice-title { font-weight: 600; }
+    .notice-title .pin { color: var(--brand-orange, #e0862e); margin-right: 5px; }
+    .notice-date { color: #999; font-size: 12px; white-space: nowrap; }
+    .notice-preview { color: #999; font-size: 12px; margin-top: 3px;
+      display: -webkit-box; -webkit-line-clamp: 1; -webkit-box-orient: vertical; overflow: hidden; }
   </style>
 </head>
 <body>
   <!-- 로그인 오버레이 -->
   <div class="overlay" id="login-overlay">
     <div class="login-box">
-      <h2>차예마을 관리자</h2>
+      <h2>지유명차 관리자</h2>
       <p>상품을 관리하려면 로그인하세요</p>
       <form id="login-form">
+        <input type="text" id="login-email" placeholder="아이디 (admin)" autocomplete="username" style="margin-bottom:8px" />
         <input type="password" id="login-pw" placeholder="비밀번호" autocomplete="current-password" />
         <button type="submit">로그인</button>
         <p class="login-err" id="login-err"></p>
@@ -97,12 +112,8 @@
           <div><label>정가(원)</label><input type="number" name="price" min="0" /></div>
           <div><label>판매가(원)</label><input type="number" name="salePrice" min="0" /></div>
         </div>
-        <div class="row2">
-          <div><label>할인율(%)</label><input type="number" name="discount" min="0" max="99" /></div>
-          <div><label>평점(0~5)</label><input type="number" name="rating" min="0" max="5" step="0.1" /></div>
-        </div>
-        <label>리뷰 수</label>
-        <input type="number" name="reviews" min="0" />
+        <label>할인율(%)</label>
+        <input type="number" name="discount" min="0" max="99" />
         <label>현재 이미지</label>
         <div style="display:flex;align-items:center;gap:12px;margin-top:4px">
           <img class="cur-thumb" id="edit-cur-img" />
@@ -123,13 +134,19 @@
   <div class="header-line"></div>
   <div class="admin">
     <div class="admin-head">
-      <h1>상품 관리</h1>
+      <h1>지유명차 관리자</h1>
       <div style="display:flex;gap:14px;align-items:center">
         <a href="/" style="color:var(--wine)">← 쇼핑몰로</a>
         <button class="logout-btn" id="logout-btn">로그아웃</button>
       </div>
     </div>
 
+    <div class="tabs">
+      <button class="tab-btn active" data-tab="products">상품 관리</button>
+      <button class="tab-btn" data-tab="notices">공지사항</button>
+    </div>
+
+    <section id="tab-products">
     <div class="admin-grid">
       <!-- 상품 추가 폼 -->
       <div class="form-card">
@@ -160,19 +177,8 @@
             </div>
           </div>
 
-          <div class="row2">
-            <div>
-              <label>할인율(%)</label>
-              <input type="number" name="discount" min="0" max="99" value="0" />
-            </div>
-            <div>
-              <label>평점(0~5)</label>
-              <input type="number" name="rating" min="0" max="5" step="0.1" value="0" />
-            </div>
-          </div>
-
-          <label>리뷰 수</label>
-          <input type="number" name="reviews" min="0" value="0" />
+          <label>할인율(%)</label>
+          <input type="number" name="discount" min="0" max="99" value="0" />
 
           <label>상품 이미지</label>
           <input type="file" name="image" accept="image/*" />
@@ -195,8 +201,61 @@
         </table>
       </div>
     </div>
+    </section>
+
+    <section id="tab-notices" hidden>
+      <div class="admin-grid">
+        <!-- 공지 작성 폼 -->
+        <div class="form-card">
+          <h2>공지 작성</h2>
+          <form id="notice-form">
+            <label>제목 *</label>
+            <input type="text" name="title" required placeholder="예) 추석 연휴 휴무 안내" />
+
+            <label>내용 *</label>
+            <textarea name="body" rows="8" required placeholder="손님께 알릴 내용을 적어 주세요.&#10;줄바꿈은 그대로 사이트에 표시됩니다."></textarea>
+
+            <label class="checkbox"><input type="checkbox" name="pinned" /> 목록 맨 위에 고정</label>
+
+            <button type="submit" class="submit-btn">공지 등록</button>
+            <p class="msg" id="notice-msg"></p>
+          </form>
+        </div>
+
+        <!-- 공지 목록 -->
+        <div>
+          <h2 style="font-size:17px;margin:0 0 12px">등록된 공지 <span id="notice-count" class="pill">0</span></h2>
+          <table>
+            <thead>
+              <tr><th>제목</th><th>등록일</th><th>관리</th></tr>
+            </thead>
+            <tbody id="notice-rows"></tbody>
+          </table>
+        </div>
+      </div>
+    </section>
   </div>
 
-  <script src="/admin.js"></script>
+  <!-- 공지 수정 모달 -->
+  <div class="overlay hidden" id="notice-edit-overlay">
+    <div class="modal-body">
+      <h2>공지 수정</h2>
+      <form id="notice-edit-form">
+        <input type="hidden" name="id" />
+        <label>제목 *</label>
+        <input type="text" name="title" required />
+        <label>내용 *</label>
+        <textarea name="body" rows="10" required></textarea>
+        <label class="checkbox"><input type="checkbox" name="pinned" /> 목록 맨 위에 고정</label>
+        <p class="msg err" id="notice-edit-msg"></p>
+        <div class="modal-actions">
+          <button type="button" class="btn-cancel" id="notice-edit-cancel">취소</button>
+          <button type="submit" class="btn-save">저장</button>
+        </div>
+      </form>
+    </div>
+  </div>
+
+  <script type="module" src="/admin.js"></script>
 </body>
 </html>

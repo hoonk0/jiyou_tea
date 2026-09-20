@@ -1,0 +1,8 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64">
+  <rect width="64" height="64" rx="14" fill="#34a35c"/>
+  <!-- 찻잎 -->
+  <path d="M33 12c11 7 15 20 8 33-11-7-15-20-8-33z" fill="#ffffff"/>
+  <path d="M33 43c-1-9 1-20 1-20" stroke="#bfe3cd" stroke-width="2.5" fill="none" stroke-linecap="round"/>
+  <!-- 주황 물방울 -->
+  <circle cx="44" cy="42" r="7" fill="#ef8f2e"/>
+</svg>
